@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link href="../css/main.css" rel="stylesheet" style="text/css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.js" data-main="../js/main"></script>
+	<title>Xiaosui Zhang's blogger</title>
+</head>
+
+<body>
+	<div id="main">
+		<div id="top" class="navbar">
+			<p>Xiaosui Zhang's Blog</p>
+		</div>
+		<div id="content-container">
+			<div class="main-container">
+				<div class="tab-bar">
+					<ul>
+						<li v-on:click="show=true">All</li>
+						<li>Daily</li>
+						<li>AI</li>
+						<li>Story</li>
+					</ul>
+				</div>
+				<div class="content-wrapper">
+					<transition v-on:before-enter="beforeEnter"
+					v-on:enter="enter" v-on:leave="leave" id="content-wrapper-transition">
+					<div v-show="this.show" v-cloak>
+						<div v-for="d in data" class="post-short" v-click>
+							<a v-bind:href="'/posts/'+d">
+							Post1: This is a fake title
+							<p class="post-short-date">5/22/2020</p>
+						</a>
+						</div>
+					</div>
+				</transition>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+
+</html>

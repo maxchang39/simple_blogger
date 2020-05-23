@@ -10,8 +10,8 @@ app.get('/', function(request, response){
   response.sendFile(__dirname + '/index.html');
 });
 
-app.get('/posts/1', function(request, response){
-  response.sendFile(__dirname + '/posts/post1.txt');
+app.get('/post/*', function(request, response){
+  response.sendFile(__dirname + '/html/post.html');
 });
 
 app.listen(

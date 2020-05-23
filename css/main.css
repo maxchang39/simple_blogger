@@ -13,11 +13,10 @@
 	min-height: 0;
 	margin: 0;
 	padding: 0;
-	border-radius: 2px;
 }
 
 #top {
-	background-color: #66f;
+	background-color: #336;
 	color: #f1f1f1;
 }
 
@@ -53,8 +52,8 @@ ul {
 
 li {
 	display:inline-block;
+	background: #fff;
 	border-radius: 10px;
-  background: #aaa;
 	text-align: center;
 	padding: 8px 0;
 	margin-right: 30px;
@@ -62,18 +61,18 @@ li {
   height: 30px;
 	font-size: 14px;
 	font-family: Arial, Sans-Serif;
+	cursor: pointer;
 }
 
 li:hover {
-	background: #eee;
-	cursor: pointer;
+  background: #aaa;
 }
 
 .content-wrapper {
 	background: white;
 	border-radius: 5px;
 	display: block;
-	min-height: 500px;
+	min-height: 450px;
 	margin-left: auto;
 	margin-right: auto;
 	width: 800px;
@@ -84,13 +83,21 @@ li:hover {
 	font-size: 16px;
 	padding-top: 8px;
 	padding-left: 10px;
-	margin-bottom: 10px;
 	height: 50px;
+	cursor: pointer;
 }
 
 .post-short:hover {
 	background: #aaa;
 }
+
+.post-short a{
+	color: black;
+}
+.post-short a:hover{
+	text-decoration: none;
+}
+
 
 .post-short-date {
 	padding-top: 3px;

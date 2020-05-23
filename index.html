@@ -5,7 +5,8 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link href="css/main.css" rel="stylesheet" style="text/css" />
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.js" data-main="js/main"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
 	<title>Xiaosui Zhang's blogger</title>
 </head>
 
@@ -28,8 +29,11 @@
 					<transition v-on:before-enter="beforeEnter"
 					v-on:enter="enter" v-on:leave="leave" id="content-wrapper-transition">
 					<div v-show="this.show" v-cloak>
-						<div v-for="d in data" class="post-short">Post1: This is a fake title
-							<p class="post-short-date">5/22/2020</p>
+						<div v-for="d in data" class="post-short" v-click>
+							<a v-bind:href="'/post/'+d">
+								Post1: This is a fake title
+								<p class="post-short-date">5/22/2020</p>
+							</a>
 						</div>
 					</div>
 				</transition>
@@ -37,6 +41,7 @@
 		</div>
 	</div>
 </div>
+<script src="js/index.js"></script>
 </body>
 
 </html>
