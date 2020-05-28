@@ -1,0 +1,28 @@
+.main-container {
+	padding: 15px 0 0 30px;
+}
+
+.content-wrapper {
+	background: white;
+	border-radius: 8px;
+	display: block;
+	min-height: 450px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 800px;
+	overflow: hidden;
+}
+
+.title {
+	width: 800px;
+	height: 30px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 10px;
+	line-height: 30px;
+	font-size: 22px;
+}
+
+.post-main {
+	padding: 5px;
+}
