@@ -41,7 +41,7 @@
 						<textarea rows="10" cols="112" id="post-new-textarea">
 						</textarea>
 					</div>
-					<transition v-on:before-enter="beforeEnter"
+					+				<transition v-on:before-enter="beforeEnter"
 					v-on:enter="enter" v-on:leave="leave" id="content-wrapper-transition">
 					<div v-show="this.show" v-cloak>
 						<a v-for="d in data" v-bind:href="'/post/'+d.id" v-click>

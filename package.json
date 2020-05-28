@@ -4,8 +4,9 @@
   "description": "P2P streaming network based on WebRTC",
   "main": "app.js",
   "scripts": {
-    "dev": "node-dev app.js",
-    "start": "node app.js"
+    "dev": "forever start -c node-dev app.js",
+    "start": "forever start -c node app.js",
+    "stop": "forever stopall"
   },
   "keywords": [
     "P2P",
@@ -16,6 +17,7 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.16.4",
+    "forever": "^3.0.0",
     "node-dev": "^4.0.0",
     "webrtc": "^1.14.1"
   }
