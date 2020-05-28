@@ -4,8 +4,10 @@
   "description": "P2P streaming network based on WebRTC",
   "main": "app.js",
   "scripts": {
-    "dev": "forever start -c node-dev app.js",
-    "start": "forever start -c node app.js",
+    "dev": "node-dev app.js",
+    "dev-forever": "forever start -c node-dev app.js",
+    "start": "node app.js",
+    "start-forever": "forever start -c node-dev app.js",
     "stop": "forever stopall"
   },
   "keywords": [
