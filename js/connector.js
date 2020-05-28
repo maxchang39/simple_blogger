@@ -11,6 +11,10 @@ connector = {
       callback(this.localPosts.filter(function (e) {
         return category == "All" || e.category == category;
       }));
+    } else {
+      callback(this.localPosts.filter(function (e) {
+        return category == "All" || e.category == category;
+      }));
     }
   }
 }
