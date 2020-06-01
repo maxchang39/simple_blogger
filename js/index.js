@@ -1,6 +1,7 @@
 var v = new Vue({
 	el: "#main",
 	data: {
+		data: [],
 		show: false,
 		showRichText: false,
 		fadeInDuration: 600,
@@ -8,15 +9,9 @@ var v = new Vue({
 		tabNames: ["All", "Daily", "AI", "Story"],
 		clickBlocked: false,
 		isActive: false,
-		computedHeight: 0
-	},
-	beforeCreate: function () {
-		connector.getPosts("All", (data) => {
-			this.data = data
-			setInterval(function() {
-				v.show = true
-			}, 10);
-		});
+		isSubmitting: false,
+		computedHeight: 0,
+		newTitle: "",
 	},
 	methods: {
 		beforeEnter: function (el) {
@@ -34,9 +29,6 @@ var v = new Vue({
 				}
 			)
 		},
-		newPostEventhandler: function () {
-			this.showRichText = true
-		},
 		leave: function () {
 		},
 		onTabClick: function(e) {
@@ -49,8 +41,32 @@ var v = new Vue({
 				});
 			}
 		},
-		toggle: function(e){
+		onClickNewPost: function(e){
 			this.isActive = !this.isActive;
+		},
+		onClickSubmitNewPost: function(e) {
+			console.log(instance.getBody());
+			console.log(this.newTitle || "");
+			this.isSubmitting = true;
+			connector.postNewPost(this.newTitle,instance.getBody(),
+			function(data) {
+				window.location.href = "/";
+			},
+			function(err) {
+				alert("Bad request");
+				v.isSubmitting = false;
+			});
+		},
+		onClickDeletePost: function(id) {
+			if (confirm("Please confirm to delete post")) {
+				connector.deletePost(id,
+				function(data) {
+					window.location.href = "/";
+				},
+				function(err) {
+					alert("Bad request");
+				});
+			}
 		},
 		initHeight: function(){
 			this.$refs['myText'].style.height = 'auto';
@@ -69,6 +85,11 @@ var v = new Vue({
 	},
 	mounted: function(){
 		this.initHeight();
+		connector.getPosts("All", (data) => {
+			console.log(data);
+			this.data = data
+			this.show = true
+		});
 	}
 });
 
@@ -79,3 +100,4 @@ sceditor.create(textarea, {
 	toolbar: 'bold,italic,underline|source',
 	emoticonsEnabled : false
 });
+var instance = sceditor.instance(textarea);
