@@ -39,7 +39,7 @@ app.get('/post/*', function(request, response){
   response.sendFile(__dirname + '/html/post.html');
 });
 
-app.get('/db/post/*', function(request, response){
+app.get('/db/posts', function(request, response){
   db.collection('posts').get().then( ( snapshot ) => {
     let docs = snapshot.docs.map(doc => {
       d = doc.data();
@@ -49,6 +49,26 @@ app.get('/db/post/*', function(request, response){
     response.json(docs);
   });
 });
+
+app.get('/db/post', function(request, response){
+  if(!request.query.id) {
+    response.status(400).json();
+  } else {
+    db.collection('posts').doc(request.query.id).get()
+    .then( ( snapshot ) => {
+      let data = snapshot.data();
+      data.id = snapshot.id;
+      console.log(data);
+      response.json(data);
+    })
+    .catch((err) => {
+      console.log(err)
+      response.status(500).json();
+    })
+  }
+});
+
+// Posts
 
 app.post('/db/post', function(request, response){
   if(!request.body.content || !request.body.title) {

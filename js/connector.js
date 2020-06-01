@@ -7,12 +7,32 @@ connector = {
     {id:3,title:"Universal Intelligence",category:"AI"},
   ],
 
+  getPostById : function (id, callbackSuccess, callbackFail) {
+    console.log('/db/post/id?='+id);
+    if (!LOCAL_TEST){
+      console.log("testing on prod server")
+      axios
+      .get('/db/post/?id='+id, {
+      }).then(function (response) {
+        callbackSuccess(
+          response.data,
+        );
+      }).catch(function (err) {
+        console.log(err)
+        callbackFail();
+      });
+    } else {
+      alert("testing on local server");
+      callbackSuccess(this.localPosts[0]);
+    }
+  },
+
   getPosts : function (category, callback) {
     if (!LOCAL_TEST){
       console.log("testing on prod server")
       axios({
         method: 'get',
-        url: '/db/post/1',
+        url: '/db/posts',
       }).then(function (response) {
         callback(
           response.data.filter(function (e) {
