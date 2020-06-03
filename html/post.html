@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<link rel="icon" href="favicon" type="image/x-icon" />
+	<link rel="icon" href="../favicon" type="image/x-icon" />
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link href="/css/navi.css" rel="stylesheet" style="text/css" />
@@ -19,14 +19,17 @@
 		<div id="top" class="navbar">
 			<a href="/"><p class="nav-logo">Xiaosui Zhang's Blog</p></a>
 		</div>
-		<div id="content-container">
+		<div id="content-container" v-cloak>
 			<div class="main-container">
-				<div class="title">
+				<div class="post-title">
 					{{title}}
 				</div>
 				<div class="content-wrapper">
 					<div class="post-main">
 						<div v-html="content"></div>
+						<div v-show="!this.show" class="post-new-loading">
+							<div class="spinner-border post-new-loading-spinner"></div>
+						</div>
 					</div>
 				</div>
 			</div>

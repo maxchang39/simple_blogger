@@ -47,19 +47,20 @@ connector = {
     }
   },
 
-  postNewPost : function (title, content, callbackSuccess, callbackFail) {
+  postNewPost : function (title, content, category, callbackSuccess, callbackFail) {
     console.log(title, content)
     if (!LOCAL_TEST){
       console.log("testing on prod server");
       axios
       .post("/db/post", {
         title: title,
-        content: content.outerHTML
+        content: content.outerHTML,
+        category: category
       }).then( (response) => {
         console.log(response)
         callbackSuccess();
       }).catch( (err) => {
-        callbackFail();
+        callbackFail(err);
       })
     } else {
       alert("testing on local server");

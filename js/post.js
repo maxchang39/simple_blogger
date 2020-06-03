@@ -4,7 +4,7 @@ var v = new Vue({
 		data: [],
 		show: false,
 		showRichText: false,
-		fadeInDuration: 600,
+		fadeInDuration: 400,
 		content: "",
 		title: ""
 	},

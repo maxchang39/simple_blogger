@@ -3,8 +3,8 @@ const firebase = require('firebase');
 const bodyParser = require('body-parser');
 const app = express();
 const port = 80;
-app.use( bodyParser.json() ); // <--- Here
-app.use( bodyParser.urlencoded( { extended: true } ) ); //for body parser to parse correctly
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
@@ -26,6 +26,14 @@ app.use('/css', express.static(__dirname + '/css'));
 app.use('/js', express.static(__dirname + '/js'));
 app.use('/favicon', express.static(__dirname + '/favicon'));
 app.use('/minified', express.static(__dirname + '/minified'));
+
+// utils
+getCurrentDate = function() {
+  let dateObj = new Date();
+  return (dateObj.getMonth()+1) + "/" + dateObj.getDate() + "/" + dateObj.getFullYear()
+}
+
+console.log(getCurrentDate());
 
 app.get('/', function(request, response){
   response.sendFile(__dirname + '/index.html');
@@ -78,7 +86,8 @@ app.post('/db/post', function(request, response){
       {
         content: request.body.content,
         title: request.body.title,
-        category: "All"
+        date: getCurrentDate(),
+        category: request.body.category
       }
     );
     response.status(200).json();

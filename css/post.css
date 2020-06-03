@@ -1,5 +1,5 @@
 .main-container {
-	padding: 15px 0 0 30px;
+	padding: 15px 0 20px 30px;
 }
 
 .content-wrapper {
@@ -9,20 +9,42 @@
 	min-height: 450px;
 	margin-left: auto;
 	margin-right: auto;
-	width: 800px;
+	width: 65%;
 	overflow: hidden;
+	transition: 0.6s;
 }
 
-.title {
-	width: 800px;
+.post-title {
+	width: 65%;
 	height: 30px;
 	margin-left: auto;
 	margin-right: auto;
 	margin-bottom: 10px;
+	padding-left: 5px;
 	line-height: 30px;
 	font-size: 22px;
+	font-weight: bolder;
 }
 
 .post-main {
 	padding: 5px;
+	position: relative;
+}
+
+.post-new-loading {
+	width: 100%;
+	min-height: 450px;
+	position: absolute;
+	background: #aaa;
+	z-index: 10;
+	opacity: 0.5;
+	top:0;
+	left:0;
+}
+
+.post-new-loading-spinner {
+	left: 48%;
+	top: 44%;
+	z-index: 10;
+	position: absolute;
 }
