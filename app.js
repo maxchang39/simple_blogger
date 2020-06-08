@@ -29,12 +29,16 @@ app.use('/minified', express.static(__dirname + '/minified'));
 
 // utils
 getCurrentDate = function() {
-  let dateObj = new Date();
+  let dateObj = new Date(new Date().toLocaleString(undefined, {
+    timeZone: 'America/Los_Angeles'
+  }));
   return (dateObj.getMonth()+1) + "/" + dateObj.getDate() + "/" + dateObj.getFullYear()
 }
 
 getCurrentTime = function() {
-  let dateObj = new Date();
+  let dateObj = new Date(new Date().toLocaleString(undefined, {
+    timeZone: 'America/Los_Angeles'
+  }));
   return dateObj.getHours() + ":" + dateObj.getMinutes();
 }
 
