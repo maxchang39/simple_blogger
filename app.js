@@ -33,6 +33,11 @@ getCurrentDate = function() {
   return (dateObj.getMonth()+1) + "/" + dateObj.getDate() + "/" + dateObj.getFullYear()
 }
 
+getCurrentTime = function() {
+  let dateObj = new Date();
+  return dateObj.getHours() + ":" + dateObj.getMinutes();
+}
+
 console.log(getCurrentDate());
 
 app.get('/', function(request, response){
@@ -66,7 +71,6 @@ app.get('/db/post', function(request, response){
     .then( ( snapshot ) => {
       let data = snapshot.data();
       data.id = snapshot.id;
-      console.log(data);
       response.json(data);
     })
     .catch((err) => {
@@ -77,7 +81,6 @@ app.get('/db/post', function(request, response){
 });
 
 // Posts
-
 app.post('/db/post', function(request, response){
   if(!request.body.content || !request.body.title) {
     response.status(400).json();
@@ -87,6 +90,7 @@ app.post('/db/post', function(request, response){
         content: request.body.content,
         title: request.body.title,
         date: getCurrentDate(),
+        time: getCurrentTime(),
         category: request.body.category
       }
     );

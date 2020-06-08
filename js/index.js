@@ -58,6 +58,11 @@ var v = new Vue({
 				}
 			);
 		},
+		onClickCopyPost : function(title, category) {
+			this.isActive = true;
+			this.postNewTitle = title;
+			this.postNewCategory = category;
+		},
 		onClickDeletePost: function(id, title) {
 			if (confirm("Please confirm to delete post: " + title)) {
 				connector.deletePost(id,
