@@ -39,7 +39,8 @@ getCurrentTime = function() {
   let dateObj = new Date(new Date().toLocaleString(undefined, {
     timeZone: 'America/Los_Angeles'
   }));
-  return dateObj.getHours() + ":" + dateObj.getMinutes();
+  return (dateObj.getHours() < 10 ? '0' : '') + dateObj.getHours() + ":" +
+   (dateObj.getMinutes() < 10 ? '0' : '') + dateObj.getMinutes();
 }
 
 console.log(getCurrentDate());
