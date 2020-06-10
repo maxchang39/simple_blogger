@@ -68,6 +68,26 @@ connector = {
     }
   },
 
+  editPost: function(id, title, content, callbackSuccess, callbackFail) {
+    console.log(id, title, content);
+    if (!LOCAL_TEST){
+      console.log("testing on prod server");
+      axios
+      .post("/db/post/edit", {
+        id: id,
+        title: title,
+        content: content.outerHTML
+      }).then( (response) => {
+        callbackSuccess();
+      }).catch( (err) => {
+        callbackFail(err);
+      })
+    } else {
+      alert("testing on local server");
+      callbackSuccess();
+    }
+  },
+
   deletePost : function (id, callbackSuccess, callbackFail) {
     console.log(id)
     if (!LOCAL_TEST){
@@ -79,7 +99,7 @@ connector = {
         console.log(response)
         callbackSuccess();
       }).catch( (err) => {
-        callbackFail();
+        callbackFail(err);
       })
     } else {
       alert("testing on local server");

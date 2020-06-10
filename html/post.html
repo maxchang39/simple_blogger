@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<link rel="icon" href="../favicon" type="image/x-icon" />
+	<link rel="icon" href="/favicon" type="image/x-icon" />
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link href="/css/navi.css" rel="stylesheet" style="text/css" />
@@ -10,8 +10,11 @@
 	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<link rel="stylesheet" href="/minified/themes/default.min.css" />
+	<script src="/minified/sceditor.min.js"></script>
+	<script src="/minified/formats/xhtml.js"></script>
 	<script src="/js/connector.js"></script>
-	<title>Xiaosui Zhang's blogger</title>
+	<title>Living is good</title>
 </head>
 
 <body>
@@ -22,13 +25,27 @@
 		<div id="content-container" v-cloak>
 			<div class="main-container">
 				<div class="post-title">
-					{{title}}
+					<div v-show="!this.isEditing" class="post-title-text">
+						{{title}}
+					</div>
+					<input class="post-edit-title" v-bind:value="postEditTitle" v-show="this.isEditing" v-on:input="postEditTitle=$event.target.value"></input>
+					<div title="edit the post" v-on:click="onClickEditPost" class="post-edit-button">
+						<svg v-show="!this.isEditing" class="post-edit-button-icon bi bi-pencil" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+							<path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"/>
+							<path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z"/>
+						</svg>
+					</div>
+					<span class="post-edit-submit-button" v-show="this.isEditing" v-on:click="onClickSubmitEditPost">Submit</span>
 				</div>
 				<div class="content-wrapper">
 					<div class="post-main">
-						<div v-html="content"></div>
+						<div class="post-main-text" v-show="!this.isEditing" v-html="content"></div>
 						<div v-show="!this.show" class="post-new-loading">
 							<div class="spinner-border post-new-loading-spinner"></div>
+						</div>
+						<div v-show="this.isEditing">
+							<textarea rows="10"  id="post-edit-textarea">
+							</textarea>
 						</div>
 					</div>
 				</div>
